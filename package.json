@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@fastify/cors": "^8.4.0",
+    "env-var": "^7.4.1",
+    "fastify": "^4.23.2",
+    "mongodb": "^6.1.0",
+    "node": "^20.6.0",
+    "pico": "^0.1.17"
+  }
+}

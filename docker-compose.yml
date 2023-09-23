@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  
+  # db:
+  #   image: mongo
+  #   ports:
+  #     - "27018:27018"
+  #   volumes:
+  #     - ./db:/data/db
+  #   container_name: bfm-mongodb
+
+  monitor-api:
+    build: .
+    ports:
+      - "9090:9090"
+    container_name: monitor-api
+    environment:
+      - dBName=business-finance-monitor
+      - collName=studio-mesch
+      - uri=mongodb+srv://bennoachmaor:bgr5znTj@business-finance-monito.9zlwlga.mongodb.net/
+      - address=0.0.0.0
+      - port=9090
