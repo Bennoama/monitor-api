@@ -11,13 +11,13 @@ export const getAllTransactions = async () => {
     return (getCollection().find().toArray());
 }
 
-export const deleteEntry = async (date:string) => {
-    const filter = { Date: date };
+export const deleteEntry = async (transactionNumber:number) => {
+    const filter = { TransactionNumber: transactionNumber };
     const collection = await getCollection();
     return (await (collection.findOneAndDelete(filter)));
 }
 
-export const createNewEntry = async (amount:number, transactionDescription?:string , insertionDate?:Date) => {
+export const createNewEntry = async (amount:number, transactionNumber:number, transactionDescription?:string , insertionDate?:Date) => {
     let date = new Date();
     let description:string = "Unspecified";
 
@@ -29,12 +29,14 @@ export const createNewEntry = async (amount:number, transactionDescription?:stri
         date = insertionDate;
     }
 
-    const filter = { Date: date.toString() };
+    const filter = { TransactionNumber: transactionNumber };
     const update = { "$set": {
                         'Amount': amount,
                         'Description': description,
-                        'Date': date
+                        'Date': date,
+                        'TransactionNumber': transactionNumber
                         }};
+                    
 
     const collection = await getCollection();
     return (await (collection.findOneAndUpdate(filter, update,
